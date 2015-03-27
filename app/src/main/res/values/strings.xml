@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Surfdevils</string>
 
-    <string name="hello_world">Hello,SurfDevils</string>
-    <string name="action_settings">Settings</string>
+
+    <string name="titulo">SurfDevils</string>
+    <string name="image">image1</string>
 </resources>
