@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.animation.AlphaAnimation;
+import android.view.animation.ScaleAnimation;
 import android.widget.TextView;
 
 
@@ -17,10 +18,13 @@ public class MainActivity extends ActionBarActivity {
 
         setContentView(R.layout.activity_main);
         AlphaAnimation fadeIn = new AlphaAnimation(0.0f , 1.0f ) ;
-
+       // ScaleAnimation scale = new ScaleAnimation(0.0f,1.0f,0.0f,1.0f);
         txtView = (TextView)findViewById(R.id.titul);
         txtView.startAnimation(fadeIn);
-        fadeIn.setDuration(1200);
+       /* scale.setDuration(1500);
+        scale.setStartOffset(0);
+        scale.setFillAfter(true);*/
+        fadeIn.setDuration(1300);
         fadeIn.setFillAfter(true);
     }
 

@@ -4,4 +4,6 @@
 
     <string name="titulo">SurfDevils</string>
     <string name="image">image1</string>
+    <string name="buttonMesage">ENTRAR</string>
+    <string name="copyRight">CopyRight 2015 surfdevils.com</string>
 </resources>

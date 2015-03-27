@@ -15,9 +15,9 @@
         android:textSize="78sp"
         android:padding = "2dp"
         android:shadowColor="#7F000000"
-        android:shadowDx="3"
-        android:shadowDy="3"
-        android:shadowRadius="1.5"
+        android:shadowDx="4"
+        android:shadowDy="4"
+        android:shadowRadius="2.0"
         android:textStyle="bold|italic"
         android:layout_below="@+id/image1"
         android:layout_centerHorizontal="true" />
@@ -34,7 +34,7 @@
         android:id="@+id/but1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ENTRAR"
+        android:text="@string/buttonMesage"
         android:background="@drawable/round_button"
         android:textSize="32sp"
         android:layout_below="@+id/titul"
@@ -44,10 +44,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CopyRight 2015 surfdevils.com"
+        android:text="@string/copyRight"
         android:textSize="12sp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:layout_below="@+id/but1"
         android:layout_centerHorizontal="true"
         android:textColor="#000066"/>
+
 </RelativeLayout>
