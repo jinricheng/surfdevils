@@ -6,4 +6,9 @@
     <string name="image">image1</string>
     <string name="buttonMesage">ENTRAR</string>
     <string name="copyRight">CopyRight 2015 surfdevils.com</string>
+    <string name="title_activity_menu1">menu1</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_fisrt_page">FisrtPage</string>
 </resources>

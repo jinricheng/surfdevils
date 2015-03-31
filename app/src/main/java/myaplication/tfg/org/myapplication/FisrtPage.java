@@ -2,47 +2,45 @@ package myaplication.tfg.org.myapplication;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.ScaleAnimation;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 
-public class MainActivity extends ActionBarActivity {
-    private TextView txtView = null;
-    private Button but1 = null;
+public class FisrtPage extends ActionBarActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_fisrt_page);
+        android.support.v7.app.ActionBar actionBar=getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setDisplayShowTitleEnabled(false);
+        LayoutInflater mInflater = LayoutInflater.from(this);
 
-        setContentView(R.layout.activity_main);
-        AlphaAnimation fadeIn = new AlphaAnimation(0.0f , 1.0f ) ;
-        txtView = (TextView)findViewById(R.id.titul);
-        txtView.startAnimation(fadeIn);
-        fadeIn.setDuration(1300);
-        fadeIn.setFillAfter(true);
+        View mCustomView = mInflater.inflate(R.layout.customactionbar, null);
+        ImageButton imageButton = (ImageButton) mCustomView
+                .findViewById(R.id.menu);
 
+        actionBar.setCustomView(mCustomView);
+        actionBar.setDisplayShowCustomEnabled(true);
     }
 
-    public void firstpage(View view){
-        Intent intent = new Intent(this,FisrtPage.class);
-        startActivity(intent);
-    }
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-     //   getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_fisrt_page, menu);
+
+
         return true;
     }
-
+*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -55,6 +53,4 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
 }
