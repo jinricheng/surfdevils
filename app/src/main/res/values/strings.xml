@@ -12,14 +12,93 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_fisrt_page">FisrtPage</string>
 
-    <string-array name="items">
-        <item>Item 1</item>
-        <item>Item 2</item>
-        <item>Item 3</item>
-        <item>Item 4</item>
-        <item>Item 5</item>
-        <item>Item 6</item>
+    <string-array name="navigationFirstLevel">
+        <item>SnowBoard</item>
+        <item>SnowWear</item>
+        <item>TechnicalFleece</item>
+        <item>Boots</item>
+        <item>Goggles</item>
+        <item>Protection</item>
+        <item>StreetWear</item>
+        <item>Bindings</item>
+        <item>Bags</item>
+        <item>Accessories</item>
+        <item>SportShoes</item>
     </string-array>
+    <string-array name="snowboard">
+        <item>Rocker</item>
+        <item>Camber</item>
+        <item>HybridRocker</item>
+        <item>Packs</item>
+        <item>TripleBase</item>
+        <item>All Boards</item>
+    </string-array>
+
+    <string-array name="snowWear">
+        <item>Jackets</item>
+        <item>Pants</item>
+        <item>Golves</item>
+        <item>Technical Underwear</item>
+        <item>All SnowWear</item>
+    </string-array>
+
+    <string-array name="bindings">
+        <item>Disc</item>
+        <item>Est</item>
+        <item>All Bindings</item>
+    </string-array>
+
+    <string-array name="boots">
+        <item>Laces</item>
+        <item>SpeedLaces</item>
+        <item>BOA</item>
+        <item>AllBindings</item>
+    </string-array>
+
+    <string-array name="goggles">
+        <item>GogglesCases</item>
+        <item>ReplacementLenses</item>
+        <item>BOA</item>
+        <item>All Goggles</item>
+    </string-array>
+
+    <string-array name="protection">
+        <item>Helmets</item>
+    </string-array>
+
+    <string-array name="fleece">
+        <item>FULLZIP</item>
+        <item>HOODIES</item>
+        <item>CREW</item>
+        <item>VEST</item>
+        <item>All Fleece</item>
+    </string-array>
+
+    <string-array name="bags">
+        <item>DayPacks</item>
+        <item>BoardBags</item>
+        <item>TRAVEL AND LUGGAGE</item>
+        <item>CCE</item>
+        <item>All Bags</item>
+    </string-array>
+
+    <string-array name="StreetWear">
+        <item>T-Shirt</item>
+        <item>CrewJackets</item>
+        <item>SWEATERS</item>
+        <item>FULLZIP HOODIES</item>
+        <item>All StreetWear</item>
+    </string-array>
+
+    <string-array name="Accessories">
+        <item>Beanies</item>
+        <item>BELTS</item>
+        <item>KEYCHAIN</item>
+        <item>WALLETS</item>
+        <item>CAPS</item>
+        <item>All Accessories</item>
+    </string-array>
+
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="title_activity_shop_cart">shopCart</string>

@@ -5,6 +5,23 @@
     tools:context="myaplication.tfg.org.myapplication.FisrtPage">
 
 
+
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#000"
+        android:layout_toRightOf="@android:id/home"
+        android:layout_centerInParent="true"
+        android:textSize="24dp"
+        android:text="SurfDevils"
+        android:textStyle="italic|bold" />
+
+
+
     <ImageButton
         android:id="@+id/shopCartButton"
         android:layout_width="wrap_content"
@@ -16,19 +33,7 @@
         android:src="@drawable/ic_action_action_shopping_cart"
         android:onClick="Cart"/>
 
-    <TextView
-        android:id="@+id/title_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
 
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#FFFFFF"
-        android:layout_toRightOf="@+id/menuButton"
-        android:layout_marginLeft="75dp"
-        android:textSize="24dp"
-        android:text="SurfDevils"
-        android:textStyle="italic|bold" />
 
 
 </RelativeLayout>

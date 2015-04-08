@@ -21,12 +21,14 @@
             android:name=".FisrtPage"
             android:label=""
             android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"
             android:uiOptions="splitActionBarWhenNarrow" >
         </activity>
         <activity
             android:name=".shopCart"
             android:label="@string/title_activity_shop_cart"
             android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"
             android:parentActivityName=".FisrtPage" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

@@ -20,12 +20,16 @@
 
 
     <ListView android:id="@+id/left_drawer"
-        android:layout_width="240dp"
+        android:layout_width="200dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:choiceMode="singleChoice"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0dp"
-        android:background="#111"/>
+        android:layout_marginBottom="1dp"
+        android:layout_marginTop="3dp"
+        android:divider="#fff"
+        android:dividerHeight="1dp"
+        android:background="@android:color/transparent"/>
+
+
 
 </android.support.v4.widget.DrawerLayout>
