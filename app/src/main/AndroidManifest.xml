@@ -20,16 +20,25 @@
         <activity
             android:name=".FisrtPage"
             android:label=""
-            android:theme="@style/AppTheme"
             android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
             android:uiOptions="splitActionBarWhenNarrow" >
         </activity>
         <activity
             android:name=".shopCart"
             android:label="@string/title_activity_shop_cart"
-            android:theme="@style/AppTheme"
+            android:parentActivityName=".FisrtPage"
             android:screenOrientation="portrait"
-            android:parentActivityName=".FisrtPage" >
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="myaplication.tfg.org.myapplication.FisrtPage" />
+        </activity>
+        <activity
+            android:name=".Oferta"
+            android:label="@string/title_activity_oferta"
+            android:parentActivityName=".FisrtPage"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="myaplication.tfg.org.myapplication.FisrtPage" />

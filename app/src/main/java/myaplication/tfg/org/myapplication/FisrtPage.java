@@ -3,6 +3,8 @@ package myaplication.tfg.org.myapplication;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ExpandableListActivity;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.view.View.OnClickListener;
 import android.content.Intent;
 import android.support.v4.view.GravityCompat;
@@ -45,25 +47,30 @@ public class FisrtPage extends ActionBarActivity {
     private ListView navigationList;
     private Intent intent;
     private ImageButton imageButton;
-    private ListAdapter adapter1;
+    private SimpleAdapter adapter1;
     private ListAdapter adapter2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fisrt_page);
-        initListView();
+        initMainListView();
         initCusmizedActionBar();
         initNavigationList();
 
     }
 
-
-
-
     private void initNavigationList() {
         navigationList = (ListView)findViewById(R.id.left_drawer);
         String[] content = getResources().getStringArray(R.array.navigationFirstLevel);
-        adapter1 = new ArrayAdapter<>(this,R.layout.navigation_list_items,content);
+        list2 = new ArrayList<HashMap<String, String>>();
+        for(int i=0;i<content.length;i++){
+            HashMap<String,String> map1 = new HashMap<String,String>();
+            map1.put("nom",content[i]);
+            map1.put("images",Integer.toString(R.drawable.ic_action_next_item));
+
+            list2.add(map1);
+        }
+        adapter1 = new SimpleAdapter(this, list2,R.layout.navigation_list_items, new String[]{"nom","images"},new int[]{R.id.text1,R.id.image2});
         navigationList.setAdapter(adapter1);
 
         drawerlayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -72,22 +79,18 @@ public class FisrtPage extends ActionBarActivity {
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerlayout, R.string.drawer_open, R.string.drawer_close);
         actionBarDrawerToggle.syncState();
         drawerlayout.setDrawerListener(actionBarDrawerToggle);
-        navigationList.setOnItemClickListener(new DrawerItemClickListener());
+        navigationList.setOnItemClickListener(new firstLevelItemsClickListener());
 
     }
 
 
-
-    private class DrawerItemClickListener implements ListView.OnItemClickListener{
-
+ /*listener of first level of navigation menu*/
+    private class firstLevelItemsClickListener implements ListView.OnItemClickListener{
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             loadContent(position);
         }
     }
-
-
-
 
     private void loadContent(int position){
          String[] content;
@@ -133,29 +136,45 @@ public class FisrtPage extends ActionBarActivity {
                 setAdapter(content);
                 break;
             default:
-                navigationList.setOnItemClickListener(new DrawerItemClickListener());
+                navigationList.setOnItemClickListener(new firstLevelItemsClickListener());
         }
 
     }
 
-    private void setAdapter(String[] content) {
-        adapter2 = new ArrayAdapter<String>(this,R.layout.second_level_items,content);
-        navigationList.setAdapter(adapter2);
-        navigationList.setOnItemClickListener(new MoreItemClickListener());
-    }
 
-    private class MoreItemClickListener implements ListView.OnItemClickListener{
+
+    private class secondLevelMenuItemsClickListener implements ListView.OnItemClickListener{
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             loadContent2(position);
         }
     }
-
-
     private void loadContent2(int position){
         String[] content;
     }
+
+    private class listPrincipalItemClickListener implements ListView.OnItemClickListener{
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            loadContent3(position);
+        }
+    }
+
+    private void loadContent3(int position){
+          switch (position){
+              case 0:
+                  Intent intent = new Intent(this,Oferta.class);
+                  startActivity(intent);
+                  break;
+              default:
+
+          }
+
+    }
+
+
     private void initCusmizedActionBar() {
         android.support.v7.app.ActionBar actionBar=getSupportActionBar();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -163,21 +182,15 @@ public class FisrtPage extends ActionBarActivity {
         LayoutInflater mInflater = LayoutInflater.from(this);
         View mCustomView = mInflater.inflate(R.layout.customactionbar, null);
         imageButton = (ImageButton)findViewById(R.id.shopCartButton);
-
-
-
         actionBar.setCustomView(mCustomView);
         actionBar.setDisplayShowCustomEnabled(true);
 
     }
 
-    public void Cart(View view){
-        Intent intent = new Intent(this,shopCart.class);
-        startActivity(intent);
-    }
-    private void initListView() {
+
+    private void initMainListView() {
         listView = (ListView)findViewById(R.id.list1);
-        list =new ArrayList<HashMap<String, String>>();
+        list =new ArrayList<HashMap<String,String>>();
         HashMap<String,String> map1=new HashMap<String,String>();
         HashMap<String,String> map2=new HashMap<String,String>();
         HashMap<String,String> map3=new HashMap<String,String>();
@@ -192,9 +205,20 @@ public class FisrtPage extends ActionBarActivity {
         list.add(map3);
         listAdapter = new SimpleAdapter(this, list,R.layout.list_item, new String[]{"nom","images"},new int[]{R.id.rowTextView,R.id.images});
         listView.setAdapter(listAdapter);
+        listView.setOnItemClickListener(new listPrincipalItemClickListener());
     }
 
 
+    public void Cart(View view){
+        Intent intent = new Intent(this,shopCart.class);
+        startActivity(intent);
+    }
+
+    private void setAdapter(String[] content) {
+        adapter2 = new ArrayAdapter<String>(this,R.layout.second_level_items,content);
+        navigationList.setAdapter(adapter2);
+        navigationList.setOnItemClickListener(new secondLevelMenuItemsClickListener());
+    }
     /*
         @Override
         public boolean onCreateOptionsMenu(Menu menu) {
@@ -218,7 +242,7 @@ public class FisrtPage extends ActionBarActivity {
                     ){
                 if(navigationList.getAdapter()!=adapter1){
                     navigationList.setAdapter(adapter1);
-                    navigationList.setOnItemClickListener(new DrawerItemClickListener());
+                    navigationList.setOnItemClickListener(new firstLevelItemsClickListener());
                 }else{
                 drawerlayout.closeDrawers();}
             }else{

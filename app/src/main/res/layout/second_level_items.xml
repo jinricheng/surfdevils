@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:textColor="#FFF"
-    android:textSize="19sp"
+    android:textSize="20sp"
     android:gravity="start"
     android:paddingRight="8dp"
     android:minHeight="30sp"

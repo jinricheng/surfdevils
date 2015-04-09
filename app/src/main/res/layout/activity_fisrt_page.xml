@@ -7,8 +7,10 @@
 
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:id="@+id/first_page"
     tools:context="myaplication.tfg.org.myapplication.FisrtPage">
 
     <ListView
@@ -26,7 +28,7 @@
         android:choiceMode="singleChoice"
         android:layout_marginBottom="1dp"
         android:layout_marginTop="3dp"
-        android:divider="#fff"
+        android:divider="#000"
         android:dividerHeight="1dp"
         android:background="@android:color/transparent"/>
 
