@@ -3,18 +3,20 @@
     android:orientation="vertical" android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:background="@drawable/list_row_selector"
-    android:padding="5dp" >
+    android:padding="6dp" >
 
 
 
 
-        <ImageView
-            android:id="@+id/thumbnail"
-            android:layout_width="95dip"
-            android:layout_height="95dip"
-            android:layout_alignParentLeft="true"
-            android:layout_marginRight="5dp"
-            />
+    <ImageView
+        android:id="@+id/thumbnail"
+        android:layout_width="80dip"
+        android:layout_height="80dip"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="8dp"
+        />
+
+
 
     <TextView
         android:id="@+id/title"
@@ -32,37 +34,14 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/title"
-        android:textColor="#000"
-        android:textSize="23dip"
-        android:textStyle="italic"
+        android:textColor="#343434"
+        android:textSize="20dip"
         android:layout_toRightOf="@+id/thumbnail"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
 
-     />
+        />
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
-        android:layout_alignRight="@+id/thumbnail"
-        android:layout_alignParentBottom="true">
-    <ImageView
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:background="@null"
-        android:src="@drawable/oferta_icon"/>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
-        android:text="-50%"
-        android:textColor="#FFF"/>
-</FrameLayout>
 
     <ImageView
         android:id="@+id/next3"
@@ -70,7 +49,19 @@
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-      />
+        android:layout_alignParentRight="true"          />
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/title"
+    android:layout_marginLeft="55dp"
+    android:layout_toLeftOf="@+id/next3"
+
+    android:textSize="18dp"
+    android:textColor="#000"
+    android:layout_alignParentBottom="true"
+
+    android:text="Sold:3"/>
+
 
 </RelativeLayout>

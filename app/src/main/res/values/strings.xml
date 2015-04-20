@@ -103,4 +103,8 @@
     <string name="drawer_close">Close navigation drawer</string>
     <string name="title_activity_shop_cart">shopCart</string>
     <string name="title_activity_oferta">Oferta</string>
+    <string name="title_activity_oferta_item_detail">OfertaItemDetail</string>
+    <string name="title_activity_individual_item_info">IndividualItemInfo</string>
+    <string name="title_activity_mas_vendidos">MasVendidos</string>
+    <string name="title_activity_news">News</string>
 </resources>

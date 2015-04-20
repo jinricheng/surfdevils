@@ -38,10 +38,25 @@
             android:name=".Oferta"
             android:label="@string/title_activity_oferta"
             android:parentActivityName=".FisrtPage"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="myaplication.tfg.org.myapplication.FisrtPage" />
+        </activity>
+        <activity
+            android:name=".IndividualItemInfo"
+            android:label="@string/title_activity_individual_item_info"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name=".MasVendidos"
+            android:label="@string/title_activity_mas_vendidos"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name=".News"
+            android:label="@string/title_activity_news"
+            android:theme="@style/AppTheme">
         </activity>
     </application>
 

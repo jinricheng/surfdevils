@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id = "@+id/oferta_item_fragment"
+
     >
 
     <ImageView
         android:id="@+id/detail_image"
         android:layout_width="match_parent"
         android:layout_height="280dp"
+        android:padding="6dp"
+        android:layout_alignParentTop="true"
         />
 
     <TextView
         android:id="@+id/detail_title"
+        android:layout_below="@+id/detail_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18dp"
@@ -22,16 +26,35 @@
 
     <TextView
         android:id = "@+id/detail_price"
+        android:layout_below="@+id/detail_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:textColor="#000"
         android:textStyle="bold"
         android:layout_marginTop="15dp"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/detail_title"
+        android:text="In Stock"
+        android:padding="3dp"
+        android:layout_marginRight="6dp"
+        android:textSize="35dp"
+        android:textStyle="bold|italic"
+        android:textColor="#31B404"
+        android:shadowColor="#D8D8D8"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="2.0"/>
+    <TextView
+        android:id="@+id/d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textSize="18dp"
+        android:layout_below="@+id/detail_price"
         android:textColor="#000"
         android:textStyle="bold"
         android:layout_marginTop="15dp"
@@ -39,9 +62,10 @@
         />
     <TextView
         android:id="@+id/detail_description"
+        android:layout_below="@+id/d"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="italic"
         android:textColor="#000"
         android:textSize="14dp"/>
-</LinearLayout>
+</RelativeLayout>

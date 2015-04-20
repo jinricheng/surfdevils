@@ -72,7 +72,6 @@ public class FisrtPage extends ActionBarActivity {
         }
         adapter1 = new SimpleAdapter(this, list2,R.layout.navigation_list_items, new String[]{"nom","images"},new int[]{R.id.text1,R.id.image2});
         navigationList.setAdapter(adapter1);
-
         drawerlayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -168,6 +167,14 @@ public class FisrtPage extends ActionBarActivity {
                   Intent intent = new Intent(this,Oferta.class);
                   startActivity(intent);
                   break;
+              case 1:
+                  Intent intent1 = new Intent(this,News.class);
+                  startActivity(intent1);
+                  break;
+              case 2:
+                  Intent intent2 = new Intent(this,MasVendidos.class);
+                  startActivity(intent2);
+                  break;
               default:
 
           }
@@ -176,6 +183,11 @@ public class FisrtPage extends ActionBarActivity {
 
 
     private void initCusmizedActionBar() {
+        getCustomizedActionBar();
+
+    }
+
+   public void getCustomizedActionBar(){
         android.support.v7.app.ActionBar actionBar=getSupportActionBar();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -184,9 +196,7 @@ public class FisrtPage extends ActionBarActivity {
         imageButton = (ImageButton)findViewById(R.id.shopCartButton);
         actionBar.setCustomView(mCustomView);
         actionBar.setDisplayShowCustomEnabled(true);
-
     }
-
 
     private void initMainListView() {
         listView = (ListView)findViewById(R.id.list1);
@@ -194,11 +204,11 @@ public class FisrtPage extends ActionBarActivity {
         HashMap<String,String> map1=new HashMap<String,String>();
         HashMap<String,String> map2=new HashMap<String,String>();
         HashMap<String,String> map3=new HashMap<String,String>();
-        map1.put("nom","Oferta >>");
+        map1.put("nom","Offer >>");
         map1.put("images",Integer.toString(R.drawable.oferta));
-        map2.put("nom","Novedades >>");
+        map2.put("nom","News>>");
         map2.put("images",Integer.toString(R.drawable.novedades));
-        map3.put("nom","Más Vendidos >>");
+        map3.put("nom","Top sellers>>");
         map3.put("images",Integer.toString(R.drawable.mas_vendidos));
         list.add(map1);
         list.add(map2);

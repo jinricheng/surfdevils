@@ -8,13 +8,13 @@
 
 
 
-        <ImageView
-            android:id="@+id/thumbnail"
-            android:layout_width="95dip"
-            android:layout_height="95dip"
-            android:layout_alignParentLeft="true"
-            android:layout_marginRight="5dp"
-            />
+    <ImageView
+        android:id="@+id/thumbnail"
+        android:layout_width="95dip"
+        android:layout_height="95dip"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="5dp"
+        />
 
     <TextView
         android:id="@+id/title"
@@ -39,30 +39,23 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
 
-     />
+        />
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/title"
         android:layout_alignRight="@+id/thumbnail"
-        android:layout_alignParentBottom="true">
-    <ImageView
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:background="@null"
-        android:src="@drawable/oferta_icon"/>
+        android:layout_alignParentBottom="true"
+        android:background="@null">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:src="@drawable/new_icon"/>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
-        android:text="-50%"
-        android:textColor="#FFF"/>
-</FrameLayout>
+    </FrameLayout>
 
     <ImageView
         android:id="@+id/next3"
@@ -71,6 +64,6 @@
         android:layout_height="25dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-      />
+        />
 
 </RelativeLayout>
