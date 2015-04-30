@@ -14,24 +14,24 @@ import java.util.List;
  */
 public class MyProductAdapter extends BaseAdapter {
     Context context;
-    private List<Product> products;
+    private List<ProductConfigurable> productConfigurables;
     private int resource;
 
     @SuppressWarnings("static-access")
-    public MyProductAdapter(Context context,List<Product> products, int resource) {
-        this.products= products;
+    public MyProductAdapter(Context context,List<ProductConfigurable> productConfigurables, int resource) {
+        this.productConfigurables = productConfigurables;
         this.resource = resource;
         this.context=context;
 
     }
     @Override
     public int getCount() {
-        return products.size();
+        return productConfigurables.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return products.get(position);
+        return productConfigurables.get(position);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class MyProductAdapter extends BaseAdapter {
         if(convertView==null){
             convertView=View.inflate(context, resource, null);
         }
-        Product p = products.get(position);
+        ProductConfigurable p = productConfigurables.get(position);
         TextView title = (TextView)convertView.findViewById(R.id.title);
         TextView price = (TextView)convertView.findViewById(R.id.Price);
         ImageView image = (ImageView)convertView.findViewById(R.id.thumbnail);

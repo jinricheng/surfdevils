@@ -220,7 +220,7 @@ public class FisrtPage extends ActionBarActivity {
 
 
     public void Cart(View view){
-        Intent intent = new Intent(this,shopCart.class);
+        Intent intent = new Intent(this,soapTest.class);
         startActivity(intent);
     }
 

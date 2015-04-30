@@ -1,16 +1,14 @@
 <resources>
     <string name="app_name">Surfdevils</string>
-
-
     <string name="titulo">SurfDevils</string>
     <string name="image">image1</string>
     <string name="buttonMesage">ENTRAR</string>
     <string name="copyRight">CopyRight 2015 surfdevils.com</string>
     <string name="title_activity_menu1">menu1</string>
-
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="description">Description:</string>
     <string name="title_activity_fisrt_page">FisrtPage</string>
+    <string name="size">Size:  </string>
 
     <string-array name="navigationFirstLevel">
         <item>SnowBoard</item>
@@ -52,7 +50,7 @@
         <item>Laces</item>
         <item>SpeedLaces</item>
         <item>BOA</item>
-        <item>AllBindings</item>
+        <item>All Boots</item>
     </string-array>
 
     <string-array name="goggles">
@@ -107,4 +105,6 @@
     <string name="title_activity_individual_item_info">IndividualItemInfo</string>
     <string name="title_activity_mas_vendidos">MasVendidos</string>
     <string name="title_activity_news">News</string>
+    <string name="title_activity_soap_test">soapTest</string>
+    <string name="action_settings">Settings</string>
 </resources>

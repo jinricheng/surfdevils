@@ -17,7 +17,7 @@ import java.util.List;
 
 public class News extends ActionBarActivity {
 
-    private List<Product> products;
+    private List<ProductConfigurable> productConfigurables;
     private MyProductAdapter adapter1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,21 +28,21 @@ public class News extends ActionBarActivity {
 
     private void createItemList(){
         ListView oferta = (ListView)findViewById(R.id.new_list);
-        products = new ArrayList<Product>();
+        productConfigurables = new ArrayList<ProductConfigurable>();
         String[] name = new String[]{"VOLCOM SUPERNATURAL INS JACKET ELECTRIC GREEN - 2015", "BURTON WOMAN SOCIETY PANT BLUE-RAY NOVEAU NEON - 2014","BURTON WB PELE MITT KAMANA WANNA LEI YA - 2015","SALOMON ASSASSIN 155 - 2015"};
         String[] price = new String[]{"256.5€", "120.95€","34.97€","84.00€"};
         String[] description = new String[]{"Great Jacket", "Comfortable snowPants","LowPrice, good quality gloves","New model of SnowBoard with incredible price"};
         int[] images = new int[]{R.drawable.jacket,R.drawable.pant2,R.drawable.gloves,R.drawable.board};
 
         for(int i =0;i<name.length;i++) {
-            Product p = new Product();
+            ProductConfigurable p = new ProductConfigurable();
             p.setTitle(name[i]);
             p.setImage(images[i]);
             p.setPrice(price[i]);
             p.setDescription(description[i]);
-            products.add(p);
+            productConfigurables.add(p);
         }
-        adapter1 = new MyProductAdapter(this,products,R.layout.new_list);
+        adapter1 = new MyProductAdapter(this, productConfigurables,R.layout.new_list);
         oferta.setAdapter(adapter1);
         oferta.setOnItemClickListener(new productDetailClickListener());
     }
@@ -57,7 +57,7 @@ public class News extends ActionBarActivity {
 
     private void loadProductDetail(int position){
         Bundle bundle = new Bundle();
-        bundle.putSerializable("key",products.get(position));
+        bundle.putSerializable("key", productConfigurables.get(position));
         Intent intent = new Intent(this,IndividualItemInfo.class);
         intent.putExtra("bundle",bundle);
         startActivity(intent);
