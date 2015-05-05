@@ -3,13 +3,16 @@ package myaplication.tfg.org.myapplication;
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,15 +31,18 @@ public class IndividualItemInfo extends ActionBarActivity {
     private LinearLayout layoutCart;
     private LinearLayout layoutLogin;
     private LinearLayout layoutQuantity;
+    private PopupWindow popSize;
+    private PopupWindow popQuantity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initCusmizedActionBar();
         getIndividualItemInfo();
-        addItemSpinners();
-        setQuantityButton();
+
         bottomMenu();
+      //  setQuantityButton();
     }
 
     private void bottomMenu() {
@@ -44,22 +50,64 @@ public class IndividualItemInfo extends ActionBarActivity {
         layoutCart=(LinearLayout)findViewById(R.id.layout_add_cart);
         layoutLogin=(LinearLayout)findViewById(R.id.layout_login);
         layoutQuantity=(LinearLayout)findViewById(R.id.layout_quantity);
-
         layoutSize.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(IndividualItemInfo.this, "You have choose Size", Toast.LENGTH_SHORT).show();
+                if(popSize !=null && popSize.isShowing()){
+                    popSize.dismiss();
+                }
+                else{
+                initPopUpWindowsSize(1);
+                int[] location = new int[2];
+                v.getLocationOnScreen(location);
+                popSize.showAtLocation(v, Gravity.NO_GRAVITY, location[0], location[1]-popSize.getHeight());
                 layoutSize.setEnabled(true);
-                layoutCart.setEnabled(false);
+                layoutCart.setEnabled(false);}
+
             }
+
+
         });
 
     }
 
-    private void setQuantityButton() {
-        plusbutton = (ImageButton)findViewById(R.id.plus);
-        minusbutton = (ImageButton)findViewById(R.id.minus);
-        quantity =(TextView)findViewById(R.id.quantity);
+    private void initPopUpWindowsSize(int number) {
+        View customView =null;
+
+        switch (number){
+            case 1:
+
+                customView = getLayoutInflater().inflate(R.layout.pop_windows_size,null);
+                popSize = new PopupWindow(customView,800,150);
+                popSize.setAnimationStyle(R.style.AnimationPreview);
+                popSize.setFocusable(true);
+                popSize.setOutsideTouchable(true);
+                addItemSpinners(customView);
+                setQuantityButton(customView);
+                customView.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        if(popSize!=null && popSize.isShowing()){
+                            popSize.dismiss();
+                            popSize =null;
+                        }
+                        return false;
+                    }
+                });
+            case 2:
+
+
+
+        }
+
+
+    }
+
+
+    private void setQuantityButton(View v) {
+        plusbutton = (ImageButton)v.findViewById(R.id.plus);
+        minusbutton = (ImageButton)v.findViewById(R.id.minus);
+        quantity =(TextView)v.findViewById(R.id.quantity);
         quantity.setText("1");
         listen();
 
@@ -102,13 +150,13 @@ public class IndividualItemInfo extends ActionBarActivity {
 
     }
 
-    private void addItemSpinners() {
+    private void addItemSpinners(View v) {
         String[] spinnerinfo = new String[]{"XS","S","M","L","XL"};
         List<String> spinner_list=new ArrayList<>();
         for(int i=0; i<spinnerinfo.length;i++){
             spinner_list.add(spinnerinfo[i]);
         }
-        spinner = (Spinner)findViewById(R.id.detail_spinner);
+        spinner = (Spinner)v.findViewById(R.id.detail_spinner);
         ArrayAdapter<String> spinner_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_gallery_item,spinner_list);
         spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinner_adapter);
@@ -126,7 +174,7 @@ public class IndividualItemInfo extends ActionBarActivity {
         ImageView image = (ImageView)findViewById(R.id.detail_image);
         String fullprice = "Price: "+p.getPrice();
         title.setText(p.getTitle());
-        if(p.getTitle().equals("VOLCOM SUPERNATURAL INS JACKET ELECTRIC GREEN - 2015")){
+       if(p.getTitle().equals("VOLCOM SUPERNATURAL INS JACKET ELECTRIC GREEN - 2015")){
             stock.setText("In Stock");
             stock.setTextColor(Color.parseColor("#31B404"));
         }

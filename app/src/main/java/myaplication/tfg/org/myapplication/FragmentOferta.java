@@ -114,6 +114,7 @@ public class FragmentOferta extends Fragment {
     private void loadProductDetail(int position){
         Bundle bundle = new Bundle();
         bundle.putSerializable("key", productConfigurables.get(position));
+        Log.d("Product info",productConfigurables.get(position).toString());
         Intent intent = new Intent(getActivity(),IndividualItemInfo.class);
         intent.putExtra("bundle",bundle);
         startActivity(intent);

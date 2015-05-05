@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="@string/titulo"
         android:textColor="#FF8000"
-        android:textSize="78sp"
+        android:textSize="64sp"
         android:padding = "2dp"
         android:shadowColor="#7F000000"
         android:shadowDx="4"
