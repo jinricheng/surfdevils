@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.TextView;
@@ -21,40 +22,35 @@ public class MainActivity extends ActionBarActivity {
     private Button but1 = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        View view= View.inflate(this,R.layout.activity_main,null);
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
-        AlphaAnimation fadeIn = new AlphaAnimation(0.0f , 1.0f ) ;
-        txtView = (TextView)findViewById(R.id.titul);
-        txtView.startAnimation(fadeIn);
-        fadeIn.setDuration(1300);
-        fadeIn.setFillAfter(true);
+        setContentView(view);
+        AlphaAnimation aa = new AlphaAnimation(0.3f,1.0f);
+        aa.setDuration(1500);
+        view.startAnimation(aa);
+        aa.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationEnd(Animation arg0) {
+                redirectTo();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+        });
 
     }
 
-    public void firstpage(View view){
-        Intent intent = new Intent(this,FisrtPage.class);
+    private void redirectTo() {
+        Intent intent = new Intent(this, FisrtPage.class);
         startActivity(intent);
+        finish();
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-     //   getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-
-
-        return super.onOptionsItemSelected(item);
-    }
-
 
 }

@@ -11,10 +11,11 @@ import java.util.List;
 public class ProductConfigurable  extends Product implements Serializable{
    private String type;
     private HashMap<String,ProductSimple> productsSimple;
+
     public ProductConfigurable(){
         productsSimple = new HashMap<>();
     }
-    public ProductConfigurable(String product_id,int image, String title, String price, String description, List<String> size){
+    public ProductConfigurable(String product_id,int image, String title, String price, String description, String size){
         super(product_id,image,title,price,description,size);
     }
 
@@ -24,6 +25,7 @@ public class ProductConfigurable  extends Product implements Serializable{
     public String getType(String type){
         return this.type;
     }
+
     public void addNewSimpleProduct(ProductSimple p){
         productsSimple.put(p.getProduct_id(),p);
     }

@@ -7,6 +7,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+
 import java.util.List;
 
 /**
@@ -23,6 +25,12 @@ public class MyProductAdapter extends BaseAdapter {
         this.resource = resource;
         this.context=context;
 
+    }
+    static class ViewHolder{
+        TextView title;
+        TextView price;
+        ImageView image;
+        ImageView icon;
     }
     @Override
     public int getCount() {
@@ -41,18 +49,27 @@ public class MyProductAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder viewHolder = new ViewHolder();
         if(convertView==null){
             convertView=View.inflate(context, resource, null);
+            viewHolder.title = (TextView)convertView.findViewById(R.id.title);
+            viewHolder.price = (TextView)convertView.findViewById(R.id.Price);
+            viewHolder.icon =(ImageView)convertView.findViewById(R.id.next3);
+            viewHolder.image =(ImageView)convertView.findViewById(R.id.thumbnail);
+            convertView.setTag(viewHolder);
+        }
+        else{
+            viewHolder = (ViewHolder) convertView.getTag();
         }
         ProductConfigurable p = productConfigurables.get(position);
-        TextView title = (TextView)convertView.findViewById(R.id.title);
-        TextView price = (TextView)convertView.findViewById(R.id.Price);
-        ImageView image = (ImageView)convertView.findViewById(R.id.thumbnail);
-        ImageView icon =(ImageView)convertView.findViewById(R.id.next3);
-        title.setText(p.getTitle());
-        image.setImageResource(p.getImage());
-        icon.setImageResource(R.drawable.ic_action_next_item_dark);
-        price.setText(p.getPrice());
+        if(p != null){
+        viewHolder.title.setText(p.getTitle());
+        UrlImageViewHelper.setUrlDrawable(viewHolder.image, "http://mininegocio.es/media/catalog/product/g/0/g0751401_chr_f_2.jpg");
+       // image.setImageResource(R.drawable.jacket);
+        viewHolder.icon.setImageResource(R.drawable.ic_action_next_item_dark);
+        viewHolder.price.setText(p.getPrice());
+        }
+
         return convertView;
     }
 }

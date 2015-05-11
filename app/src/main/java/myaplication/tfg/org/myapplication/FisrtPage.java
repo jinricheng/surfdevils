@@ -164,7 +164,8 @@ public class FisrtPage extends ActionBarActivity {
     private void loadContent3(int position){
           switch (position){
               case 0:
-                  Intent intent = new Intent(this,Oferta.class);
+                  Intent intent = new Intent(this,MasVendidos.class);
+                  intent.putExtra("name","Offers");
                   startActivity(intent);
                   break;
               case 1:
@@ -173,6 +174,7 @@ public class FisrtPage extends ActionBarActivity {
                   break;
               case 2:
                   Intent intent2 = new Intent(this,MasVendidos.class);
+                  intent2.putExtra("name","Top_Sellers");
                   startActivity(intent2);
                   break;
               default:
@@ -193,7 +195,7 @@ public class FisrtPage extends ActionBarActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         LayoutInflater mInflater = LayoutInflater.from(this);
         View mCustomView = mInflater.inflate(R.layout.customactionbar, null);
-        imageButton = (ImageButton)findViewById(R.id.shopCartButton);
+     //   imageButton = (ImageButton)findViewById(R.id.shopCartButton);
         actionBar.setCustomView(mCustomView);
         actionBar.setDisplayShowCustomEnabled(true);
     }

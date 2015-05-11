@@ -11,7 +11,7 @@ public class ProductSimple extends Product implements Serializable{
     private String type;
     public ProductSimple(){}
 
-    public ProductSimple(String product_id,int image, String title, String price, String description, List<String> size){
+    public ProductSimple(String product_id,int image, String title, String price, String description, String size){
         super(product_id,image,title,price,description,size);
     }
 

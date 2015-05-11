@@ -17,8 +17,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
@@ -26,6 +30,7 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -40,19 +45,35 @@ public class MasVendidos extends ActionBarActivity {
     private List<String> product_id;
     private ProductConfigurable p_configurable;
     private ProductSimple pp_simple;
+    private HashMap<String,String>allSize;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mas_vendidos);
+        getActivityTitle();
+        initializeVariable();
+        new DownLoad().execute();
+    }
+
+    /*initialize all variable that we need for this activity*/
+    private void initializeVariable() {
         size = new ArrayList<>();
         productConfigurables = new ArrayList<>();
         product_id = new ArrayList<>();
         pp_simple =new ProductSimple();
-        new DownLoad().execute();
+        allSize = new HashMap<>();
     }
 
+    /*initialize the activity title*/
+    private void getActivityTitle() {
+        Bundle bundle = getIntent().getExtras();
+        String title = (String)bundle.get("name");
+        TextView text= (TextView)findViewById(R.id.special_title);
+        text.setText(title);
+    }
 
-       private class DownLoad extends AsyncTask<String, Float, String> {
+  /*async task that do the work of downloading products' info*/
+    private class DownLoad extends AsyncTask<String, Float, String> {
            ProgressDialog pDialog;
            SoapObject r;
            String NAMESPACE = "urn:Magento";
@@ -85,7 +106,9 @@ public class MasVendidos extends ActionBarActivity {
                   stringArrayProperty.setType(stringArray.getClass());
 */
                    getAllListItem();
-                   getSizeLabel();
+                   getAllSize();
+                 //  getSizeLabel();
+
 
                } catch (Exception e) {
                    e.printStackTrace();
@@ -94,22 +117,22 @@ public class MasVendidos extends ActionBarActivity {
 
            }
 
-
-           private void setupSessionLogin() throws IOException, XmlPullParserException {
-               env = new SoapSerializationEnvelope(
-                       SoapEnvelope.VER11);
-               env.dotNet = false;
-               env.xsd = SoapSerializationEnvelope.XSD;
-               env.enc = SoapSerializationEnvelope.ENC;
-               request = new SoapObject(NAMESPACE, "login");
-               request.addProperty("username", "jin");
-               request.addProperty("apiKey", "1234567890");
-               env.setOutputSoapObject(request);
-               androidHttpTransport = new HttpTransportSE(URL);
-               androidHttpTransport.call("", env);
-               Object result = env.getResponse();
-               sessionId = result.toString();
-           }
+      /*get the session id from the web */
+      private void setupSessionLogin() throws IOException, XmlPullParserException {
+          env = new SoapSerializationEnvelope(
+                  SoapEnvelope.VER11);
+          env.dotNet = false;
+          env.xsd = SoapSerializationEnvelope.XSD;
+          env.enc = SoapSerializationEnvelope.ENC;
+          request = new SoapObject(NAMESPACE, "login");
+          request.addProperty("username", "jin");
+          request.addProperty("apiKey", "1234567890");
+          env.setOutputSoapObject(request);
+          androidHttpTransport = new HttpTransportSE(URL);
+          androidHttpTransport.call("", env);
+          Object result = env.getResponse();
+          sessionId = result.toString();
+      }
 
            private void getAllListItem() throws IOException, XmlPullParserException {
                request = new SoapObject(NAMESPACE, "catalogProductList");
@@ -126,7 +149,7 @@ public class MasVendidos extends ActionBarActivity {
 
            public void getIndividualProductInfo() throws IOException, XmlPullParserException {
                 String temp =new String();
-                ProductConfigurable p = new ProductConfigurable();
+               ProductConfigurable p = new ProductConfigurable();
                for (String id : product_id) {
                    request = new SoapObject(NAMESPACE, "catalogProductInfo");
                    request.addProperty("sessionId", sessionId);
@@ -137,31 +160,79 @@ public class MasVendidos extends ActionBarActivity {
                    String name = r.getProperty("name").toString();
                    String type = r.getProperty("type").toString();
                    if(!name.equals(temp) && type.equals("configurable")){
-                       createConfigurableProduct(r);
+                        p =createConfigurableProduct(r);
                        temp = name;
-                   //    productConfigurables.add(p_configurable);
+                       productConfigurables.add(p);
+                       System.out.println(p.getTitle());
                    }
                    else{
                        createSimpleProduct(r);
-                        Log.d("`product simple",pp_simple.getTitle());
-                      // p_configurable.addNewSimpleProduct(pp_simple);
+                       if(allSize.isEmpty()){
+                           getAllSize();
+                       }
+                       String value = getAdditionalAttributeValue();
+                       pp_simple.setPrice(p.getPrice());
+                       pp_simple.setSize(allSize.get(value));
+                       p.addNewSimpleProduct(pp_simple);
+
                    }
-                   Log.d("productInformation", r.toString());
+                   Log.d("Products",r.toString());
+
                }
            }
 
+         private String getAdditionalAttributeValue() throws IOException, XmlPullParserException {
+            SoapObject attributes = new SoapObject(NAMESPACE,"attributes");
+            SoapObject additional = new SoapObject(NAMESPACE,"additional_attributes");
+            additional.addProperty("attribute","size");
+            SoapObject requestAtributtes = new SoapObject(NAMESPACE,"catalogProductRequestAttributes");
+            requestAtributtes.addProperty("attributes",attributes);
+            requestAtributtes.addProperty("additional_attributes",additional);
+            request = new SoapObject(NAMESPACE, "catalogProductInfo");
+            request.addProperty("sessionId", sessionId);
+            request.addProperty("productId", "8");
+            request.addProperty("attributes",requestAtributtes);
+            env.setOutputSoapObject(request);
+            androidHttpTransport.call("", env);
+            r = (SoapObject) env.getResponse();
+            SoapObject result = (SoapObject)r.getProperty(r.getPropertyCount()-1);
+            result= (SoapObject)result.getProperty("item");
+            String value = (String)result.getProperty("value");
+
+            return value;
+         }
+
+
+      /*get the attribute size with the respect label and value, save them for future use*/
+      private void getAllSize() throws IOException, XmlPullParserException {
+          request = new SoapObject(NAMESPACE, "catalogProductAttributeInfo");
+          request.addProperty("sessionId", sessionId);
+          request.addProperty("attribute","size");
+          env.setOutputSoapObject(request);
+          androidHttpTransport.call("", env);
+          r = (SoapObject) env.getResponse();
+          SoapObject sizeOptions = (SoapObject)r.getProperty("options");
+          for(int i =0;i<sizeOptions.getPropertyCount();i++) {
+              SoapObject item = (SoapObject) sizeOptions.getProperty(i);
+              allSize.put((String)item.getProperty("value"),(String)item.getProperty("label"));
+          }
+      }
            private void createSimpleProduct(SoapObject r) {
-
-
                     pp_simple.setProduct_id((String)r.getProperty("product_id"));
                     pp_simple.setSku((String)r.getProperty("sku"));
                     pp_simple.setTitle((String)r.getProperty("name"));
-                    pp_simple.setDescription((String)r.getProperty("description"));
-                    pp_simple.setPrice((String)r.getProperty("price"));
            }
 
-           private void createConfigurableProduct(SoapObject r) {
-
+           private ProductConfigurable createConfigurableProduct(SoapObject r) {
+               ProductConfigurable p = new ProductConfigurable();
+               p.setProduct_id((String)r.getProperty("product_id"));
+               p.setSku((String)r.getProperty("sku"));
+               p.setTitle((String)r.getProperty("name"));
+               p.setDescription((String)r.getProperty("description"));
+               Double price=Double.parseDouble((String)r.getProperty("price"));
+               String pr = String.format("%.2f",price);
+               p.setPrice(pr);
+               return p;
            }
 
            private void getSizeLabel() throws IOException, XmlPullParserException {
@@ -187,8 +258,12 @@ public class MasVendidos extends ActionBarActivity {
            @Override
            protected void onPostExecute(String result) {
                super.onPostExecute(result);
-               Log.d("Hi", "Done Downloading.");
 
+               Log.d("Hi", "Done Downloading.");
+               for(ProductConfigurable p:productConfigurables) {
+                  // System.out.println(p);
+               }
+               createItemList();
                pDialog.dismiss();
 
            }
@@ -197,21 +272,23 @@ public class MasVendidos extends ActionBarActivity {
        }
 
     private void createItemList(){
-        ListView oferta = (ListView)findViewById(R.id.top_seller_list);
-        productConfigurables = new ArrayList<ProductConfigurable>();
+
+
         String[] name = new String[]{"VOLCOM SUPERNATURAL INS JACKET ELECTRIC GREEN - 2015", "BURTON WOMAN SOCIETY PANT BLUE-RAY NOVEAU NEON - 2014","BURTON WB PELE MITT KAMANA WANNA LEI YA - 2015","SALOMON ASSASSIN 155 - 2015"};
         String[] price = new String[]{"256.5€", "120.95€","34.97€","84.00€"};
         String[] description = new String[]{"Great Jacket", "Comfortable snowPants","LowPrice, good quality gloves","New model of SnowBoard with incredible price"};
         int[] images = new int[]{R.drawable.jacket,R.drawable.pant2,R.drawable.gloves,R.drawable.board};
 
-        for(int i =0;i<name.length;i++) {
+      /*  for(int i =0;i<name.length;i++) {
             ProductConfigurable p = new ProductConfigurable();
             p.setTitle(name[i]);
             p.setImage(images[i]);
             p.setPrice(price[i]);
             p.setDescription(description[i]);
             productConfigurables.add(p);
-        }
+        }*/
+
+        ListView oferta = (ListView)findViewById(R.id.top_seller_list);
         adapter1 = new MyProductAdapter(this, productConfigurables,R.layout.topseller_list);
         oferta.setAdapter(adapter1);
         oferta.setOnItemClickListener(new productDetailClickListener());

@@ -1,30 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#fff">
 
-    <Spinner
-        android:id="@+id/detail_spinner"
-        android:layout_width="115dp"
-        android:prompt="@string/size"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/detail_title"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
 
-        >
-    </Spinner>
-    <TextView
+    <RadioGroup
+        android:id = "@+id/size_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/detail_title"
-        android:layout_toLeftOf="@+id/detail_spinner"
-        android:layout_marginLeft="3dp"
-        android:text="@string/size"
-        android:textSize="21dp"
-        android:textColor="#000"
-        android:textStyle="bold"
-        android:layout_marginTop="7dp"/>
-
+        android:orientation="horizontal">
+       </RadioGroup>
 </RelativeLayout>

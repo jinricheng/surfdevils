@@ -4,8 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/background"
+    android:background="@drawable/blue"
   >
+
+
 
     <TextView
         android:id="@+id/titul"
@@ -20,40 +22,20 @@
         android:shadowDy="4"
         android:shadowRadius="2.0"
         android:textStyle="bold|italic"
-        android:layout_below="@+id/image1"
+        android:layout_gravity="center_vertical"
         android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerInParent="true"
+        />
 
-    <ImageView
-        android:id="@+id/image1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/snow"
-        android:contentDescription="@string/image"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-    <Button
-        android:id="@+id/but1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/buttonMesage"
-        android:background="@drawable/round_button"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        android:layout_below="@+id/titul"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
-        android:onClick="firstpage"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/copyRight"
-        android:textSize="12sp"
-        android:layout_marginTop="35dp"
-        android:layout_below="@+id/but1"
-        android:layout_centerHorizontal="true"
-        android:textColor="#000066"/>
+        android:textSize="15sp"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:textColor="#000"/>
 
 </RelativeLayout>

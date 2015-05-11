@@ -6,11 +6,11 @@
 
     >
     <TextView
-        android:id="@+id/oferta_title"
+        android:id="@+id/special_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Top Seller"
+
         android:textSize="55dp"
         android:textColor="#FF4000"
         android:textStyle="bold|italic"
@@ -19,7 +19,7 @@
 
     <ListView
         android:id="@+id/top_seller_list"
-        android:layout_below="@+id/oferta_title"
+        android:layout_below="@+id/special_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
