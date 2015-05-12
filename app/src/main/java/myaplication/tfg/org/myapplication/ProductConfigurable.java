@@ -13,7 +13,7 @@ public class ProductConfigurable  extends Product implements Serializable{
     private HashMap<String,ProductSimple> productsSimple;
 
     public ProductConfigurable(){
-        productsSimple = new HashMap<>();
+        productsSimple = new HashMap<String,ProductSimple>();
     }
     public ProductConfigurable(String product_id,int image, String title, String price, String description, String size){
         super(product_id,image,title,price,description,size);

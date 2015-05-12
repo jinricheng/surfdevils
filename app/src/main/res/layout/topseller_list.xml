@@ -3,6 +3,7 @@
     android:orientation="vertical" android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:background="@drawable/list_row_selector"
+    android:id="@+id/unique_list"
     android:padding="6dp" >
 
 
@@ -51,10 +52,11 @@
         android:layout_alignParentBottom="true"
         android:background="@null">
         <ImageView
+            android:id="@+id/special_icon"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:background="@null"
-            android:src="@drawable/hot_icon"
+
             android:layout_marginBottom="3dp"/>
 
 

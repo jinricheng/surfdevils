@@ -64,7 +64,7 @@ public class MyProductAdapter extends BaseAdapter {
         ProductConfigurable p = productConfigurables.get(position);
         if(p != null){
         viewHolder.title.setText(p.getTitle());
-        UrlImageViewHelper.setUrlDrawable(viewHolder.image, "http://mininegocio.es/media/catalog/product/g/0/g0751401_chr_f_2.jpg");
+        UrlImageViewHelper.setUrlDrawable(viewHolder.image, "http://mininegocio.es/media/catalog/product/android/gf_1.png");
        // image.setImageResource(R.drawable.jacket);
         viewHolder.icon.setImageResource(R.drawable.ic_action_next_item_dark);
         viewHolder.price.setText(p.getPrice());
