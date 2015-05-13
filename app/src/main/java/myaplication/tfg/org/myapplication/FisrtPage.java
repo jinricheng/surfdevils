@@ -169,7 +169,8 @@ public class FisrtPage extends ActionBarActivity {
                   startActivity(intent);
                   break;
               case 1:
-                  Intent intent1 = new Intent(this,News.class);
+                  Intent intent1 = new Intent(this,MasVendidos.class);
+                  intent1.putExtra("name","News");
                   startActivity(intent1);
                   break;
               case 2:

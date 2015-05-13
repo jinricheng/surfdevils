@@ -11,11 +11,14 @@ import java.util.List;
 public class ProductConfigurable  extends Product implements Serializable{
    private String type;
     private HashMap<String,ProductSimple> productsSimple;
+    private List<String> simpleProductId;
+    private String section;
 
     public ProductConfigurable(){
         productsSimple = new HashMap<String,ProductSimple>();
+        simpleProductId = new ArrayList<String>();
     }
-    public ProductConfigurable(String product_id,int image, String title, String price, String description, String size){
+    public ProductConfigurable(String product_id,String image, String title, String price, String description, String size){
         super(product_id,image,title,price,description,size);
     }
 
@@ -30,6 +33,13 @@ public class ProductConfigurable  extends Product implements Serializable{
         productsSimple.put(p.getProduct_id(),p);
     }
 
+    public void addSimpleProductId(String id){
+        simpleProductId.add(id);
+    }
+
+    public List<String> getSimpleProductId(){
+        return simpleProductId;
+    }
      public ProductSimple getSimpleProduct(String product_id){
          return productsSimple.get(product_id);
      }
@@ -39,5 +49,13 @@ public class ProductConfigurable  extends Product implements Serializable{
     }
     public HashMap<String,ProductSimple> getListProductSimple(){
         return this.productsSimple;
+    }
+
+    public void setSection(String section){
+        this.section = section;
+    }
+
+    public String getSection(){
+        return this.section;
     }
 }

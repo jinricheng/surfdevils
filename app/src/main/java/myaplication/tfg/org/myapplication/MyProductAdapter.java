@@ -31,6 +31,8 @@ public class MyProductAdapter extends BaseAdapter {
         TextView price;
         ImageView image;
         ImageView icon;
+        ImageView especial;
+        TextView quantity;
     }
     @Override
     public int getCount() {
@@ -56,6 +58,8 @@ public class MyProductAdapter extends BaseAdapter {
             viewHolder.price = (TextView)convertView.findViewById(R.id.Price);
             viewHolder.icon =(ImageView)convertView.findViewById(R.id.next3);
             viewHolder.image =(ImageView)convertView.findViewById(R.id.thumbnail);
+            viewHolder.especial=(ImageView)convertView.findViewById(R.id.special_icon);
+            viewHolder.quantity=(TextView)convertView.findViewById(R.id.quantityNumber);
             convertView.setTag(viewHolder);
         }
         else{
@@ -63,8 +67,20 @@ public class MyProductAdapter extends BaseAdapter {
         }
         ProductConfigurable p = productConfigurables.get(position);
         if(p != null){
+         if(p.getSection().equals("Offers")) {
+             viewHolder.especial.setImageResource(R.drawable.oferta_icon);
+
+         }
+         else if(p.getSection().equals("News")){
+             viewHolder.especial.setImageResource(R.drawable.new_icon);
+         }
+            else{
+             viewHolder.especial.setImageResource(R.drawable.hot_icon);
+             viewHolder.quantity.setText("Sold:"+"3");
+         }
+
         viewHolder.title.setText(p.getTitle());
-        UrlImageViewHelper.setUrlDrawable(viewHolder.image, "http://mininegocio.es/media/catalog/product/android/gf_1.png");
+        UrlImageViewHelper.setUrlDrawable(viewHolder.image, p.getImage());
        // image.setImageResource(R.drawable.jacket);
         viewHolder.icon.setImageResource(R.drawable.ic_action_next_item_dark);
         viewHolder.price.setText(p.getPrice());

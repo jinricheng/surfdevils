@@ -37,7 +37,7 @@ public class News extends ActionBarActivity {
         for(int i =0;i<name.length;i++) {
             ProductConfigurable p = new ProductConfigurable();
             p.setTitle(name[i]);
-            p.setImage(images[i]);
+            //p.setImage(images[i]);
             p.setPrice(price[i]);
             p.setDescription(description[i]);
             productConfigurables.add(p);

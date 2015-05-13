@@ -268,7 +268,7 @@ public class IndividualItemInfo extends ActionBarActivity {
             stock.setText("Out Of Stock");
             stock.setTextColor(Color.parseColor("#DF0101"));
         }
-        UrlImageViewHelper.setUrlDrawable(image, "http://mininegocio.es/media/catalog/product/g/0/g0751401_chr_f_2.jpg");
+        UrlImageViewHelper.setUrlDrawable(image, p.getImage());
         description.setText(p.getDescription());
         price.setText(fullprice);
     }

@@ -69,6 +69,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"          />
     <TextView
+        android:id="@+id/quantityNumber"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_below="@id/title"
@@ -78,8 +79,7 @@
     android:textSize="18dp"
     android:textColor="#000"
     android:layout_alignParentBottom="true"
-
-    android:text="Sold:3"/>
+/>
 
 
 </RelativeLayout>

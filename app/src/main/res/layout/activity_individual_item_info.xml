@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/detail_title"
-            android:padding="5dp"
+            android:padding="15dp"
             android:textSize="28dp"
             android:textStyle="bold|italic"
             android:shadowColor="#D8D8D8"
